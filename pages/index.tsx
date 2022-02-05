@@ -47,10 +47,11 @@ const Home: NextPage = () => {
   console.log(theme);
 
   return (
-    <div className="h-screen w-screen bg-green-100 dark:bg-slate-800">
+    <div className="h-screen w-screen">
       <button
-        className={`absolute top-1 right-1 p-2 
-        `}
+        className={`absolute top-1 right-1 p-2 ${
+          theme === "dark" ? "hover:text-yellow-300" : "hover:text-indigo-500"
+        }`}
         onClick={() => {
           if (theme === "dark") {
             setTheme("light");
@@ -76,9 +77,9 @@ const Home: NextPage = () => {
 
       <main className="max-w-[600px] min-h-screen flex flex-col mx-auto justify-center ">
         <section id="Character">
-          <div className="bg-green-400 rounded-lg shadow-2xl p-4 ">
-            <h1 className="text-center text-2xl">{name}</h1>
-            <div className="flex min-h-[350px] p-4">
+          <div className="bg-green-300 rounded-lg shadow-xl p-4 dark:bg-gray-800 dark:border-2 dark: border-red-900 ">
+            <h1 className="text-center h-10 font-extrabold text-3xl">{name}</h1>
+            <div className="flex min-h-[350px] p-8">
               <div className="basis-1/2">
                 <h2 className="underline ">About Me</h2>
                 <ul className="">
@@ -110,7 +111,7 @@ const Home: NextPage = () => {
                   </ul>
                 </ul>
               </div>
-              <div className=" basis-1/2 flex flex-col pl-8 h-unset ">
+              <div className=" basis-1/2 flex flex-col pl-10 h-unset ">
                 <div className=" basis-1/2">
                   <h2 className="underline">Appeared In</h2>
                   <ul className="">
@@ -185,15 +186,13 @@ const Home: NextPage = () => {
         >
           <Input
             className="mr-2"
-            placeholder="Enter the name of a character"
+            placeholder="Enter the name of a character..."
             value={searchedValue}
             onChange={(e) => {
               setSearchedValue(e.target.value);
             }}
           ></Input>
-          <Button className="bg-green-400 text-black hover:bg-green-500">
-            Lookup Character
-          </Button>
+          <Button>Lookup Character</Button>
         </form>
       </main>
       <footer></footer>
