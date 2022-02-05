@@ -2,12 +2,23 @@ import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import { MoonIcon, SunIcon } from "@heroicons/react/outline";
+
+import {
+  MoonIcon,
+  SunIcon,
+  PaperAirplaneIcon,
+  VideoCameraIcon,
+  UserIcon,
+} from "@heroicons/react/outline";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { useTheme } from "next-themes";
+
+// To Do
+// Consider using pseudo to reduce jsx icons for bullets, or use one icon in Header
+// Consider setting up dark mode manually using local storage
+// Finish dark/light mode colors
+// Add validations:Need an error when there is no match, and return when no data.
 
 const Home: NextPage = () => {
   interface Character {
@@ -65,40 +76,62 @@ const Home: NextPage = () => {
 
       <main className="max-w-[600px] min-h-screen flex flex-col mx-auto justify-center ">
         <section id="Character">
-          <div className="bg-green-400 min-h-[400px] rounded-lg shadow-2xl p-4 ">
+          <div className="bg-green-400 rounded-lg shadow-2xl p-4 ">
             <h1 className="text-center text-2xl">{name}</h1>
-            <div className="flex p-4">
+            <div className="flex min-h-[350px] p-4">
               <div className="basis-1/2">
                 <h2 className="underline ">About Me</h2>
-                <ul className="list-disc list-inside">
-                  <li>Height:&nbsp;{height}cm</li>
-                  <li>Weight:&nbsp;{mass}kg</li>
-                  <li>Hair Color:&nbsp;{hair_color}</li>
-                  <li>DOB:&nbsp;{birth_year}</li>
-                  <li>
-                    Species:
-                    <ul className="list-disc ml-8 list-inside">
-                      {species.map((species: any, index: number) => (
-                        <li key={index}>{species.name}</li>
-                      ))}
-                    </ul>
+                <ul className="">
+                  <li className="flex items-center">
+                    <UserIcon className="h-3 w-3" />
+                    &nbsp;Height:&nbsp;{height}cm
                   </li>
+                  <li className="flex items-center">
+                    <UserIcon className="h-3 w-3" />
+                    &nbsp;Weight:&nbsp;{mass}kg
+                  </li>
+                  <li className="flex items-center">
+                    <UserIcon className="h-3 w-3" />
+                    &nbsp;Hair Color:&nbsp;{hair_color}
+                  </li>
+                  <li className="flex items-center">
+                    <UserIcon className="h-3 w-3" />
+                    &nbsp;Born:&nbsp;{birth_year}
+                  </li>
+
+                  <li className="flex items-center">
+                    <UserIcon className="h-3 w-3 flex" />
+                    &nbsp;Species:&nbsp;
+                  </li>
+                  <ul className="block list-disc ml-8">
+                    {species.map((species: any) => (
+                      <li>{species.name}</li>
+                    ))}
+                  </ul>
                 </ul>
               </div>
-              <div className="basis-1/2 pl-8">
-                <div className="">
-                  <h2 className="underline">Films Appeared In</h2>
-                  <ul className="list-disc list-inside">
+              <div className=" basis-1/2 flex flex-col pl-8 h-unset ">
+                <div className=" basis-1/2">
+                  <h2 className="underline">Appeared In</h2>
+                  <ul className="">
                     {films.map((film: any, index: number) => (
-                      <li key={index}>{film.title}</li>
+                      <li key={index} className="flex items-center">
+                        <VideoCameraIcon className=" animate-pulse h-3 w-3" />
+                        &nbsp; {film.title}
+                      </li>
                     ))}
                   </ul>
                 </div>
-                <div className="pt-5">
+                <div className="basis-1/2">
                   <h2 className="underline">Starships Flown</h2>
-                  <ul className="list-disc list-inside">
+                  <ul className="">
                     {starships.map((starship: any, index: number) => (
-                      <li key={index}>{starship.name}</li>
+                      <>
+                        <li key={index} className="flex items-center">
+                          <PaperAirplaneIcon className=" animate-spin h-3 w-3" />
+                          &nbsp; {starship.name}
+                        </li>
+                      </>
                     ))}
                   </ul>
                 </div>

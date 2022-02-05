@@ -18,3 +18,9 @@ a {
 * {
   box-sizing: border-box;
 }
+.userIcon:before {
+  content: url(../public/images/user.svg);
+  display: block;
+  height: 16px;
+  width: 16px;
+}
