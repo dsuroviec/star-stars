@@ -151,7 +151,9 @@ const Home: NextPage = () => {
             )
               .then((response) => response.json())
               .then((response) => response.results[0]);
-
+            if (!character || !character.length) {
+              return;
+            }
             // Get all films in parallel for which the searched character has starred
             const films = await Promise.all(
               character.films.map((film: string) =>
