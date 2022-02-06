@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import {
   SparklesIcon,
   SunIcon,
@@ -16,8 +15,9 @@ import { useTheme } from "next-themes";
 // To Do
 // Consider using pseudo to reduce jsx icons for bullets, or use one icon in Header
 // Consider setting up dark mode manually using local storage
-// Finish dark/light mode colors
-// Add validations:Need an error when there is no match, and return when no data.
+// Add testing
+// condense api
+// Correct all type and any errors
 
 const Home: NextPage = (p) => {
   interface Character {
@@ -42,8 +42,6 @@ const Home: NextPage = (p) => {
   const [fav, setFav] = useState(
     theme === "dark" ? "/skywalker.ico" : "/vader.ico"
   );
-
-  console.log(showError);
   return (
     <div className="h-screen w-screen relative p-2">
       <button
