@@ -5,8 +5,8 @@ export default function Document() {
     <Html>
       <Head />
       <body
-        class="bg-gradient-to-br from-green-50 to-green-100 dark:from-gray-800
-        dark:to-gray-900 text-gray-900 dark:text-gray-200 "
+        className="dark:bg-[#1c1c1f]
+        bg-green-50"
       >
         <Main />
         <NextScript />
