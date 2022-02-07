@@ -32,26 +32,32 @@ export default async function handler(
       species: speciesUrls,
     } = await fetch(`https://swapi.dev/api/people/?search=${req.query.search}`)
       .then((response) => response.json())
-      .then((response) => response.results[0]);
+      .then((data) => data.results[0]);
 
     // Get all films in parallel for which the searched character has starred
     const films = await Promise.all(
       filmUrls.map((film: string) =>
-        fetch(film).then((response) => response.json())
+        fetch(film)
+          .then((response) => response.json())
+          .then((film) => film.title)
       )
     );
 
     // Get all starships in parallel for which searched character has flown
     const starships = await Promise.all(
       starshipUrls.map((starship: string) =>
-        fetch(starship).then((response) => response.json())
+        fetch(starship)
+          .then((response) => response.json())
+          .then((starship) => starship.name)
       )
     );
 
     // Get all species in parallel for which searched character is in
     const species = await Promise.all(
       speciesUrls.map((species: string) =>
-        fetch(species).then((response) => response.json())
+        fetch(species)
+          .then((response) => response.json())
+          .then((species) => species.name)
       )
     );
 
@@ -66,6 +72,6 @@ export default async function handler(
       species,
     });
   } catch {
-    res.status(404).json({ error: "Failure to pull from swapi" });
+    res.status(404).json({ error: "Failure to fetch swapi from /profile" });
   }
 }

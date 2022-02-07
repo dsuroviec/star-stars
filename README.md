@@ -1,4 +1,4 @@
-![logo](public/skywalker.ico)
+![logo](public/yoda.ico)
 ![logo](public/vader.ico)
 
 # StarScout - Star wars character lookup
