@@ -12,11 +12,6 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { useTheme } from "next-themes";
 import Logo from "../components/Logo";
-// To Do
-// Consider using pseudo to reduce jsx icons for bullets, or use one icon in Header
-// Consider setting up dark mode manually using local storage
-// Add testing
-// Correct all type and any errors
 
 const Home: NextPage = (p) => {
   interface CharacterProfile {
@@ -25,8 +20,8 @@ const Home: NextPage = (p) => {
     mass: number;
     hair_color: string;
     birth_year: string;
-    starships: [];
-    films: [];
+    starships: string[];
+    films: string[];
     species: string[];
   }
 
@@ -114,7 +109,7 @@ const Home: NextPage = (p) => {
                       Species:&nbsp;
                     </li>
                     <ul className="block list-disc ml-8">
-                      {species?.map((species: any, index: number) => (
+                      {species?.map((species, index) => (
                         <li key={index}>{species}</li>
                       ))}
                     </ul>
@@ -124,7 +119,7 @@ const Home: NextPage = (p) => {
                   <div className=" basis-1/2">
                     <h2 className="underline">Appeared In</h2>
                     <ul className="">
-                      {films?.map((film: any, index: number) => (
+                      {films?.map((film, index) => (
                         <li key={index} className="flex items-center">
                           <VideoCameraIcon className="mr-2 animate-pulse h-3 w-3" />
                           {film}
@@ -135,7 +130,7 @@ const Home: NextPage = (p) => {
                   <div className="basis-1/2">
                     <h2 className="underline">Starships&nbsp;Flown</h2>
                     <ul className="">
-                      {starships?.map((starship: any, index: number) => (
+                      {starships?.map((starship, index) => (
                         <>
                           <li key={index} className="flex items-center">
                             <PaperAirplaneIcon className="mr-2 animate-spin h-3 w-3" />
@@ -175,7 +170,7 @@ const Home: NextPage = (p) => {
                 setShowError(false);
                 setSearchedValue(e.target.value);
               }}
-              aria-label="Name Searchbar"
+              aria-label="Search"
             ></Input>
             <Button
               disabled={searchedValue ? false : true}

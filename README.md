@@ -19,3 +19,9 @@ npm run dev
 ```
 
 The application will be accessible at `:3000`
+
+## Testing
+
+```bash
+npm test
+```

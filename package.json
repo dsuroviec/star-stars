@@ -1,11 +1,12 @@
 {
-  "name": "star-stars",
+  "name": "starScout",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
@@ -15,13 +16,16 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^14.0.0-beta",
     "@types/node": "17.0.14",
     "@types/react": "17.0.39",
     "autoprefixer": "^10.4.2",
     "eslint": "8.8.0",
     "eslint-config-next": "12.0.10",
     "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.5.0",
     "postcss": "^8.4.6",
     "prettier": "2.5.1",
     "tailwindcss": "^3.0.18",
