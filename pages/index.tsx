@@ -13,7 +13,7 @@ import Button from "../components/Button";
 import { useTheme } from "next-themes";
 import Logo from "../components/Logo";
 
-const Home: NextPage = (p) => {
+const Home: NextPage = () => {
   interface CharacterProfile {
     name: string;
     height: number;
@@ -25,10 +25,12 @@ const Home: NextPage = (p) => {
     species: string[];
   }
 
-  const [searchedValue, setSearchedValue] = useState<string>("");
+  const [searchedValue, setSearchedValue] = useState("");
   const [characterProfile, setCharacterProfile] =
     useState<CharacterProfile | null>(null);
   const [showError, setShowError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const {
     name,
     height,
@@ -80,74 +82,85 @@ const Home: NextPage = (p) => {
           <section id="Character" className="relative">
             <div className=" bg-green-500 dark:bg-red-600 rounded-lg absolute -inset-1.5  blur"></div>
             <div className="bg-green-300 relative rounded-xl p-4 dark:bg-[#161617] ">
-              <h1 className="text-center relative h-10 font-extrabold text-3xl">
-                {name}
-              </h1>
-              <div className="flex gap-10 min-h-[350px] p-8">
-                <div className="basis-1/2">
-                  <h2 className="underline ">About Me</h2>
-                  <ul className="">
-                    <li className="flex items-center">
-                      <UserIcon className="mr-2 h-3 w-3" />
-                      Height:&nbsp;{height}cm
-                    </li>
-                    <li className="flex items-center">
-                      <UserIcon className="mr-2 h-3 w-3" />
-                      Weight:&nbsp;{mass}kg
-                    </li>
-                    <li className="flex items-center">
-                      <UserIcon className="mr-2 h-3 w-3" />
-                      Hair Color:&nbsp;{hair_color}
-                    </li>
-                    <li className="flex items-center">
-                      <UserIcon className="mr-2 h-3 w-3" />
-                      Born:&nbsp;{birth_year}
-                    </li>
-
-                    <li className="flex items-center">
-                      <UserIcon className="mr-2  h-3 w-3 flex" />
-                      Species:&nbsp;
-                    </li>
-                    <ul className="block list-disc ml-8">
-                      {species?.map((species, index) => (
-                        <li key={index}>{species}</li>
-                      ))}
-                    </ul>
-                  </ul>
+              {loading ? (
+                <div className="min-h-[350px] flex-col flex justify-center ">
+                  <div className="animate-spin relative bg-gradient-to-br from-blue-700 to-blue-300 rounded-full  w-1/2 h-[16px] m-auto flex">
+                    <div className="absolute bg-black w-1/4 h-full"></div>
+                  </div>
                 </div>
-                <div className=" basis-1/2 flex flex-col  h-unset ">
-                  <div className=" basis-1/2">
-                    <h2 className="underline">Appeared In</h2>
-                    <ul className="">
-                      {films?.map((film, index) => (
-                        <li key={index} className="flex items-center">
-                          <VideoCameraIcon className="mr-2 animate-pulse h-3 w-3" />
-                          {film}
+              ) : (
+                <div className="min-h-[350px]">
+                  <h1 className="text-center relative  font-extrabold text-3xl">
+                    {name}
+                  </h1>
+                  <div className=" flex gap-10 p-8">
+                    <div className="basis-1/2">
+                      <h2 className="underline ">About Me</h2>
+                      <ul className="">
+                        <li className="flex items-center">
+                          <UserIcon className="mr-2 h-3 w-3" />
+                          Height:&nbsp;{height}cm
                         </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="basis-1/2">
-                    <h2 className="underline">Starships&nbsp;Flown</h2>
-                    <ul className="">
-                      {starships?.map((starship, index) => (
-                        <>
-                          <li key={index} className="flex items-center">
-                            <PaperAirplaneIcon className="mr-2 animate-spin h-3 w-3" />
-                            {starship}
-                          </li>
-                        </>
-                      ))}
-                    </ul>
+                        <li className="flex items-center">
+                          <UserIcon className="mr-2 h-3 w-3" />
+                          Weight:&nbsp;{mass}kg
+                        </li>
+                        <li className="flex items-center">
+                          <UserIcon className="mr-2 h-3 w-3" />
+                          Hair Color:&nbsp;{hair_color}
+                        </li>
+                        <li className="flex items-center">
+                          <UserIcon className="mr-2 h-3 w-3" />
+                          Born:&nbsp;{birth_year}
+                        </li>
+
+                        <li className="flex items-center">
+                          <UserIcon className="mr-2  h-3 w-3 flex" />
+                          Species:&nbsp;
+                        </li>
+                        <ul className="block list-disc ml-8">
+                          {species?.map((species, index) => (
+                            <li key={index}>{species}</li>
+                          ))}
+                        </ul>
+                      </ul>
+                    </div>
+                    <div className=" basis-1/2 flex flex-col  h-unset ">
+                      <div className=" basis-1/2">
+                        <h2 className="underline">Appeared In</h2>
+                        <ul className="">
+                          {films?.map((film, index) => (
+                            <li key={index} className="flex items-center">
+                              <VideoCameraIcon className="mr-2 animate-pulse h-3 w-3" />
+                              {film}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="basis-1/2">
+                        <h2 className="underline">Starships&nbsp;Flown</h2>
+                        <ul className="">
+                          {starships?.map((starship, index) => (
+                            <>
+                              <li key={index} className="flex items-center">
+                                <PaperAirplaneIcon className="mr-2 animate-spin h-3 w-3" />
+                                {starship}
+                              </li>
+                            </>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </section>
           <form
             className="mt-10 block sm:flex"
             onSubmit={(e) => {
               e.preventDefault();
+              setLoading(true);
               // Get the the searched character
               const characterProfile = fetch(
                 `/api/profile?search=${searchedValue}`
@@ -158,8 +171,13 @@ const Home: NextPage = (p) => {
                   }
                   return response.json();
                 })
-                .then(setCharacterProfile)
-                .catch(() => setShowError(true));
+                .then((profile) => {
+                  setCharacterProfile(profile);
+                })
+                .catch(() => {
+                  setShowError(true);
+                })
+                .finally(() => setLoading(false));
             }}
           >
             <Input
