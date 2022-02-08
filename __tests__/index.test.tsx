@@ -1,4 +1,4 @@
-import { getByLabelText, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Home from "../pages/index";
 import userEvent from "@testing-library/user-event";
 

@@ -96,7 +96,7 @@ const Home: NextPage = () => {
                   <div className=" flex gap-10 p-8">
                     <div className="basis-1/2">
                       <h2 className="underline ">About Me</h2>
-                      <ul className="">
+                      <ul>
                         <li className="flex items-center">
                           <UserIcon className="mr-2 h-3 w-3" />
                           Height:&nbsp;{height}cm
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
                     <div className=" basis-1/2 flex flex-col  h-unset ">
                       <div className=" basis-1/2">
                         <h2 className="underline">Appeared In</h2>
-                        <ul className="">
+                        <ul>
                           {films?.map((film, index) => (
                             <li key={index} className="flex items-center">
                               <VideoCameraIcon className="mr-2 animate-pulse h-3 w-3" />
@@ -137,9 +137,9 @@ const Home: NextPage = () => {
                           ))}
                         </ul>
                       </div>
-                      <div className="basis-1/2">
+                      <div className="basis-1/2 mt-2">
                         <h2 className="underline">Starships&nbsp;Flown</h2>
-                        <ul className="">
+                        <ul>
                           {starships?.map((starship, index) => (
                             <li key={index} className="flex items-center">
                               <PaperAirplaneIcon className="mr-2 animate-spin h-3 w-3" />
@@ -169,9 +169,7 @@ const Home: NextPage = () => {
                   }
                   return response.json();
                 })
-                .then((profile) => {
-                  setCharacterProfile(profile);
-                })
+                .then(setCharacterProfile)
                 .catch(() => {
                   setShowError(true);
                 })
