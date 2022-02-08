@@ -141,12 +141,10 @@ const Home: NextPage = () => {
                         <h2 className="underline">Starships&nbsp;Flown</h2>
                         <ul className="">
                           {starships?.map((starship, index) => (
-                            <>
-                              <li key={index} className="flex items-center">
-                                <PaperAirplaneIcon className="mr-2 animate-spin h-3 w-3" />
-                                {starship}
-                              </li>
-                            </>
+                            <li key={index} className="flex items-center">
+                              <PaperAirplaneIcon className="mr-2 animate-spin h-3 w-3" />
+                              {starship}
+                            </li>
                           ))}
                         </ul>
                       </div>
