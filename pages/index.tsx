@@ -48,28 +48,29 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <button
-        className={`absolute top-1 right-1 p-2 ${
-          theme === "dark" ? "hover:text-yellow-300" : "hover:text-indigo-500"
-        }`}
-        onClick={() => {
-          if (theme === "dark") {
-            setTheme("light");
-            setFav("/yoda.ico");
-          } else {
-            setTheme("dark");
-            setFav("/vader.ico");
-          }
-        }}
-        aria-label="Change theme"
-      >
-        {theme === "dark" ? (
-          <SunIcon className="w-6 h-6" />
-        ) : (
-          <SparklesIcon className="w-6 h-6" />
-        )}
-      </button>
-
+      <div className="w-[40px]">
+        <button
+          className={`absolute top-1 right-1 p-2 ${
+            theme === "dark" ? "hover:text-yellow-300" : "hover:text-indigo-500"
+          }`}
+          onClick={() => {
+            if (theme === "dark") {
+              setTheme("light");
+              setFav("/yoda.ico");
+            } else {
+              setTheme("dark");
+              setFav("/vader.ico");
+            }
+          }}
+          aria-label="Change theme"
+        >
+          {theme === "dark" ? (
+            <SunIcon className="w-6 h-6" />
+          ) : (
+            <SparklesIcon className="w-6 h-6" />
+          )}
+        </button>
+      </div>
       <Head>
         <title>Star Scout</title>
         <link rel="icon" href={fav} />
