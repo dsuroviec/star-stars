@@ -48,7 +48,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="w-[40px]">
+      <div className="h-[40px]">
         <button
           className={`absolute top-1 right-1 p-2 ${
             theme === "dark" ? "hover:text-yellow-300" : "hover:text-indigo-500"
